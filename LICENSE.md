@@ -1,7 +1,7 @@
 License Information
 ======
 
-&copy;2018&ndash;2020 Sam Grundman
+&copy;2018&ndash;2022 Sam Grundman
 
 MIT License
 ---
