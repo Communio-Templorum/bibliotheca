@@ -756,8 +756,6 @@ yodasws.page('home').setRoute({
 				name: packageJson.name,
 				components:[
 				],
-				sections:[
-				],
 				pages:[
 				],
 			};

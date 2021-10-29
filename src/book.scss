@@ -1,0 +1,321 @@
+$sm: "screen";
+$md: "(min-width: 580px)";
+$lg: "(min-width: 1000px)";
+$xl: "(min-width: 1200px)";
+$link-color: dodgerblue;
+
+[itemscope][itemtype~="https://schema.org/Book"] {
+	counter-reset: chapter;
+
+	h2[itemprop="name"] {
+		text-align: center;
+	}
+
+	u[itemprop="author"] {
+		display: block;
+		text-align: center;
+		margin-bottom: 1em;
+	}
+
+	[itemtype="https://schema.org/Clip"],
+	footer {
+		u[itemprop="author"] {
+			display: inline;
+		}
+	}
+
+	> nav:not([role="doc-toc"]) {
+		margin: 1.1em 0;
+		text-align: center;
+		font-size: smaller;
+	}
+
+	> nav[role="doc-toc"] {
+		margin: 1rem 0 2rem;
+
+		@media #{$md} {
+			columns: 2;
+		}
+
+		@media #{$lg} {
+			columns: 3;
+		}
+
+		> ol {
+			margin: 0;
+		}
+	}
+
+	&[itemtype~="https://schema.org/PublicationVolume"] {
+		position: relative;
+
+		> nav > [rel="prev"] {
+			position: absolute;
+			left: 0;
+		}
+
+		> nav > [rel="next"] {
+			position: absolute;
+			right: 0;
+		}
+	}
+
+	section {
+		margin-bottom: 1em;
+
+		section:not([itemtype="https://schema.org/Book"])::before {
+			display: block;
+			content: "Chapter " counter(chapter);
+			counter-increment: chapter;
+			font-size: 1.05em;
+			font-weight: bold;
+		}
+
+		aside[lang] {
+			display: none;
+		}
+
+		details > summary {
+			cursor: pointer;
+			margin-bottom: 1em;
+		}
+
+		details > ruby {
+			display: list-item;
+			list-style: none;
+
+			@media #{$md} {
+				margin-left: 1em;
+			}
+
+			@media #{$lg} {
+				margin: 0 2em;
+			}
+
+			> rtc {
+				display: block;
+				margin-left: 3em;
+			}
+		}
+
+		details > dl,
+		ol > dl {
+			margin: 0.5em 0.5em 0.5em 0;
+			padding: 0.5em;
+			border: 1px solid black;
+
+			@media #{$md} {
+				float: right;
+				clear: right;
+				margin: 0.5em -0.5em 0.5em 0.5em;
+				padding: 0.5em;
+				border: 1px solid black;
+				border-right: 0 none;
+			}
+
+			dd {
+				vertical-align: middle;
+
+				@media #{$md} {
+					max-width: 200px;
+				}
+			}
+
+			dd::after {
+				display: inline;
+				font-size: 0.5em;
+				color: grey;
+				vertical-align: middle;
+				margin-left: 0.5em;
+			}
+
+			dd:lang(sux)::after {
+				content: "(Sumerian)";
+			}
+
+			dd:lang(akk)::after {
+				content: "(Akkadian)";
+			}
+
+			dd:lang(egy)::after {
+				content: "(Egyptian)";
+			}
+
+			dd:lang(xhu)::after {
+				content: "(Hurrian)";
+			}
+
+			dd:lang(xht)::after {
+				content: "(Hattic)";
+			}
+
+			dd:lang(hit)::after {
+				content: "(Hittite)";
+			}
+
+			dd:lang(uga)::after {
+				content: "(Ugaritic)";
+			}
+
+			dd:lang(phn)::after {
+				content: "(Phoenician)";
+			}
+
+			dd:lang(syc)::after {
+				content: "(Classic Syrian)";
+			}
+
+			dd:lang(he)::after {
+				content: "(Hebrew)";
+			}
+
+			dd:lang(grc)::after {
+				content: "(Ancient Greek)";
+			}
+
+			dd:lang(la)::after {
+				content: "(Latin)";
+			}
+
+			dd:lang(el)::after {
+				content: "(Greek)";
+			}
+
+			dd:lang(arc)::after {
+				content: "(Aramaic)";
+			}
+
+			dd:lang(ar)::after {
+				content: "(Arabic)";
+			}
+
+			dd[translate="no"]:lang(en)::after {
+				content: "(English)";
+			}
+		}
+
+		details > aside,
+		ol > aside {
+			margin: 1em 0;
+			border: solid lightgrey;
+			border-width: 1px 0 1px 2px;
+
+			@media #{$md} {
+				float: right;
+				clear: right;
+				margin: 0.5em -0.5em 0.5em 0.5em;
+				border: 1px solid black;
+				border-right: 0 none;
+			}
+
+
+			> p:first-child,
+			> dl:first-child {
+				margin-top: 0;
+			}
+
+			> p:last-child,
+			> dl:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		dl > dd > small {
+			display: block;
+			$indent: 1em;
+			text-indent: -#{$indent};
+			margin-left: #{$indent};
+			&::before {
+				display: inline;
+				content: '— ';
+			}
+		}
+	}
+
+	ol,
+	ul {
+		&.no-bullets {
+			list-style: none;
+			padding-left: 0;
+		}
+
+		> ruby {
+			user-select: none;
+			cursor: grab;
+		}
+	}
+
+	> small {
+		display: block;
+		text-align: center;
+	}
+
+	[itemprop="alternateName"] {
+		display: block;
+		text-align: center;
+		font-weight: bold;
+		margin: 0.3em 0 1.2em;
+
+		&::after,
+		&::before {
+			display: inline;
+			font-size: 1.1em;
+			font-weight: normal;
+		}
+
+		&::before {
+			content: "[ ";
+		}
+
+		&::after {
+			content: " ]";
+		}
+	}
+
+	h2 rtc[itemprop="alternateName"] {
+		font-size: 0.7em;
+
+		&::before {
+			content: "(";
+		}
+
+		&::after {
+			content: ")";
+		}
+	}
+
+	a[role="doc-backlink"],
+	a[role="doc-noteref"] {
+		color: $link-color;
+		cursor: pointer;
+	}
+
+	a[role="doc-noteref"] {
+		text-decoration: none;
+		vertical-align: super;
+		font-size: 0.7em;
+
+		&:focus {
+			margin: 0 2px;
+			outline: none;
+			border: solid $link-color;
+			border-width: 1px 2px;
+			border-radius: 3px;
+			padding: 0 2px;
+		}
+	}
+
+	footer[role="doc-endnotes"] ol {
+		list-style: none;
+		padding-left: 4em;
+		text-indent: -2em;
+
+		p {
+			text-indent: 0;
+		}
+
+		a[role="doc-backlink"] {
+			text-decoration: none;
+		}
+	}
+}

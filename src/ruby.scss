@@ -1,0 +1,102 @@
+ruby {
+	&[hidden] {
+		display: none !important;
+	}
+
+	&.revise {
+		color: darkred;
+	}
+
+	:not(ol) > &:lang(en) {
+		display: inline;
+		display: contents;
+	}
+
+	&:lang(en) > rt {
+		display: inline;
+		font-size: 0.8em;
+		color: grey;
+
+		&::before {
+			display: inline;
+			content: " (";
+		}
+
+		&::after {
+			display: inline;
+			content: ") ";
+		}
+	}
+
+	rtc > & {
+		display: inline;
+		display: contents;
+
+		> rt[lang*="Latn"] {
+			vertical-align: baseline;
+			font-size: 0.8em;
+		}
+
+		> rt[lang*="Latn"],
+		> rtc:lang(en) {
+			display: inline;
+
+			&::before {
+				display: inline;
+				content: " (";
+			}
+
+			&::after {
+				display: inline;
+				content: ")";
+			}
+
+			> abbr {
+				font-style: italic;
+			}
+		}
+	}
+
+	&:lang(en) > rtc {
+		font-size: 0.8em;
+		color: grey;
+	}
+
+	summary & > rtc,
+	&:lang(en) > ruby > rtc,
+	&:not(:lang(en)) > rtc:lang(en),
+	&:not(:lang(en)) > rtc[lang*="Latn"] {
+		font-size: 0.8em;
+		color: grey;
+
+		&::before {
+			content: "(";
+		}
+
+		&::after {
+			content: ")";
+		}
+	}
+
+	ol > & {
+		display: list-item;
+
+		&[value]::marker {
+			content: attr(value) ". ";
+		}
+	}
+
+	ol > &,
+	p > & {
+		&:lang(en) > rtc:not(:lang(en)) {
+			display: block;
+			margin-left: 2rem;
+		}
+	}
+
+	ruby > rt {
+		display: inline;
+		vertical-align: super;
+		margin-left: 0.5em;
+	}
+}
